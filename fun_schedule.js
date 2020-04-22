@@ -1,6 +1,6 @@
 /*
-Randomly generates a fun schedule.
-Script: tailsjs
+** Randomly generates a fun schedule.
+** Script by: tailsjs
 */
 
 function random(min, max) {return Math.round(Math.random() * (max - min)) + min}
