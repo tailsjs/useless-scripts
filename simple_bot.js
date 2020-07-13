@@ -1,4 +1,4 @@
-// бот основанный на vk-io гайд: vk.com/@tailsjsundefined-bot-na-js-blya
+// бот основанный на vk-io гайд: vk.com/@tailsjsundefined-kak-napisat-svoego-brand-new-elite-bota-gaid-ot-teiclzzhsa
 let VK = require('vk-io')
 let vk = new VK({
 token: 'токен пизды',
