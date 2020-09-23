@@ -19,3 +19,17 @@ body: fs.readFileSync(folder + "/" + cmds[i], 'utf8')
 links.push({name: cmds[i], url: 'https://paste.lucko.me/' + req.key }); 
 } 
 return links;
+
+/*
+** Single file version.
+*/
+
+
+const fetch = require("node-fetch"); 
+const fs = require('fs'); 
+let file = "./HERE_YOUR_WAY" 
+const req = (await (await fetch('https://paste.lucko.me/documents', { 
+method: "POST", 
+body: fs.readFileSync(file, 'utf8') 
+})).json()); 
+return req.key;
