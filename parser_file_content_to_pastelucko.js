@@ -18,4 +18,4 @@ body: fs.readFileSync(folder + "/" + cmds[i], 'utf8')
 })).json()); 
 links.push({name: cmds[i], url: 'https://paste.lucko.me/' + req.key }); 
 } 
-return JSON.stringify(links, null, '\t');
+return links;
