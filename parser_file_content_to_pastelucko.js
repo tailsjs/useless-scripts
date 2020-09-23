@@ -9,14 +9,14 @@
 let links = []; 
 let folder = './HERE_YOUR_WAY'; 
 const fetch = require("node-fetch"); 
-const fs = require('fs'); 
+const fs = require("fs"); 
 const cmds = fs.readdirSync(folder); 
 for(let i = 0; i < cmds.length - 1; i++){ 
-let req = (await (await fetch('https://paste.lucko.me/documents', { 
+let req = (await (await fetch("https://paste.lucko.me/documents", { 
 method: "POST", 
-body: fs.readFileSync(folder + "/" + cmds[i], 'utf8') 
+body: fs.readFileSync(folder + "/" + cmds[i], "utf8") 
 })).json()); 
-links.push({name: cmds[i], url: 'https://paste.lucko.me/' + req.key }); 
+links.push({name: cmds[i], url: "https://paste.lucko.me/" + req.key }); 
 } 
 return links;
 
@@ -26,10 +26,10 @@ return links;
 
 
 const fetch = require("node-fetch"); 
-const fs = require('fs'); 
+const fs = require("fs"); 
 let file = "./HERE_YOUR_WAY" 
-const req = (await (await fetch('https://paste.lucko.me/documents', { 
+const req = (await (await fetch("https://paste.lucko.me/documents", { 
 method: "POST", 
-body: fs.readFileSync(file, 'utf8') 
+body: fs.readFileSync(file, "utf8") 
 })).json()); 
-return req.key;
+return "https://paste.lucko.me/" + req.key;
