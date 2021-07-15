@@ -1,2 +1,2 @@
 # funny useless scripts.
-for parts.
+for spare parts for more serious projects.
