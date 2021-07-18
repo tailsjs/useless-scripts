@@ -11,6 +11,6 @@ function helloworld(name, callback){
 };
 
 helloworld("tails", function(res){
-    if(!res.ok)return console.log(res.response);
+    if (!res.ok) return console.log(res.response);
     return console.log(res.response);
 });
