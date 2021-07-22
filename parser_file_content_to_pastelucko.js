@@ -24,7 +24,7 @@ return links;
 ** Single file version.
 */
 
-let file = "./HERE_YOUR_WAY";
+const file = "./HERE_YOUR_WAY";
 const fetch = require("node-fetch"); 
 const fs = require("fs"); 
 const resp = (await (await fetch("https://paste.lucko.me/documents", { 
