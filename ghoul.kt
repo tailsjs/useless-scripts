@@ -5,7 +5,7 @@
 **  Just a meme script, don't take it seriously.
 **  Plus, I haven't published anything to this repository for a whole year.
 **  PORT TO KOTLIN. (Yes, I started learning Kotlin.)
-**  I think, you know how to build Kotlin script. [when I fix my computer. I will make a build especially for you.]
+**  I think, you know how to build Kotlin script. [when I fix my computer, I will make a build especially for you.]
 */
 
 fun main() {
