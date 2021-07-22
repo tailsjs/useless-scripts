@@ -7,7 +7,9 @@
 
 const fs = require("fs");
 const request = require("request");
+const uri = "https://i.pinimg.com/originals/e6/03/ec/e603ec55a0a100750c65c10b396f1206.png";
+const fileName = "./cute_fox.png"
 
-request("https://i.pinimg.com/originals/e6/03/ec/e603ec55a0a100750c65c10b396f1206.png").pipe(fs.createWriteStream("./cute_fox.png")).on('close', function(){
+request(uri).pipe(fs.createWriteStream(fileName)).on('close', function(){
     return console.log('Done!')
 });
