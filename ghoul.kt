@@ -12,6 +12,6 @@ fun main() {
     var i: Int = 1000
     do {
         println("$i-7=${i-7}")
-        i-=7
-    } while(i > 0)
+        i -= 7
+    } while (i > 0)
 }
