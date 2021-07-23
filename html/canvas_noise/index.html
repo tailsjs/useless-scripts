@@ -16,13 +16,12 @@
             };
 
             do{
-	            if(painted.x == canvas.width){
-  	                painted.x = 1
+	       if(painted.x == canvas.width){
+  	            painted.x = 1
                     painted.y += 1
                 }
                 ctx.fillStyle = `rgb(${random(0, 255)}, ${random(0, 255)}, ${random(0, 255)})`
-                console.log(painted.y)
-	            ctx.fillRect(painted.x, painted.y, painted.x, painted.y);
+	        ctx.fillRect(painted.x, painted.y, painted.x, painted.y);
                 painted.x += 1
             }while(painted.y != canvas.height)
 
