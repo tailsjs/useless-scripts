@@ -9,8 +9,8 @@ val random = Random()
 
 fun main() {
     val maxNumber: Int = rand(3, 10)
-    val strings = "wake up,go to school,teach kotlin,play cs:go with onetap,become boomer".split(",").toTypedArray()
-    var done = ""
+    val strings: String = "wake up,go to school,teach kotlin,play cs:go with onetap,become boomer".split(",").toTypedArray()
+    var done: String = ""
     for(i in 1..maxNumber){
         done += "$i. ${strings[rand(0, strings.size)]}\n"
     }
