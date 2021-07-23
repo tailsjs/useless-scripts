@@ -9,7 +9,7 @@ import java.util.Random
 val random = Random()
 
 fun main() {
-	val letters: String = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789!@#$%^&*_"
+    val letters: String = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789!@#$%^&*_"
     val passLength: Int = 10
     var result: String = ""
     
