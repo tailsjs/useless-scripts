@@ -11,4 +11,4 @@ for(let i = 0; i < passLength; i++)result += letters[random(0, letters.length)];
 
 return console.log(result);
 
-function random(min, max) {return Math.round(Math.random() * (max - min)) + min};
+function random(min, max) {return Math.round(Math.random() * (max - min)) + min}; // Random function.
