@@ -3,7 +3,7 @@
 ** Script by: tailsjs
 */
 
-function random(min, max) {return Math.round(Math.random() * (max - min)) + min} // from https://github.com/nitreojs/israelcods/blob/master/random.js
+function random(min, max) {return Math.round(Math.random() * (max - min)) + min} // from https://github.com/tailsjs/israelcods/blob/master/random.js
 
 let array = "wake up,go to school,teach js,play cs:go with onetap,become boomer".split(',') // comma separated actions
 let string = ``
