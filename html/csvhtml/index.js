@@ -5,10 +5,14 @@ document.getElementById('csvfile').onchange = function(e) {
         reader.readAsText(this.files[0], "UTF-8");
         const file = this.files[0];
         reader.onload = function(e){
-            const result = JSON.parse(csvJSON(e.target.result));
-            const names = parseNames(result[2]);
-            const strings = parseStrings(result);
-            document.getElementById("div1").innerHTML = `<center><table border="1"><caption>${file.name}</caption><tbody><tr>${names}</tr>${strings}</tbody></table></center>`;
+            try{
+                const result = JSON.parse(csvJSON(e.target.result));
+                const names = parseNames(result[2]);
+                const strings = parseStrings(result);
+                document.getElementById("div1").innerHTML = `<center><table border="5"><caption>${file.name}</caption><tbody><tr>${names}</tr>${strings}</tbody></table></center>`;
+            }catch(e){
+                return alert("Ваш CSV файл повреждён! Скорей всего, он был обфусцирован. Пожалуйста, отремонтируйте CSV перед просмотром.")
+            }
         };
     };
 };
