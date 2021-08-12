@@ -1,4 +1,6 @@
+const debug = false;
 document.getElementById('csvfile').onchange = function(e) {
+    if(this.files[0] == null)return;
     if(this.files[0].name.split(".")[this.files[0].name.split(".").length-1] != "csv")return alert("Это не CSV!");
     else{
         var reader = new FileReader();
@@ -7,12 +9,13 @@ document.getElementById('csvfile').onchange = function(e) {
         reader.onload = function(e){
             try{
                 const result = JSON.parse(csvJSON(e.target.result));
-                if(result == {})return alert("Ваш CSV файл повреждён! Скорей всего, он был обфусцирован. Пожалуйста, отремонтируйте CSV перед просмотром.")
-                const names = parseNames(result[2]);
+                if(result === {})return alert("Ваш CSV файл повреждён! Скорей всего, он был обфусцирован. Пожалуйста, отремонтируйте CSV перед просмотром.")
+                const names = parseNames(result[0]);
                 const strings = parseStrings(result);
                 document.getElementById("div1").innerHTML = `<center><table border="5"><caption>${file.name}</caption><tbody><tr>${names}</tr>${strings}</tbody></table></center>`;
-            }catch(e){
-                logger(`${file.name} is broken.`, 1)
+            }catch(error){
+                logger(`${file.name} is broken.`, 1);
+                logger(error, 1);
                 return alert("Ваш CSV файл повреждён! Скорей всего, он был обфусцирован. Пожалуйста, отремонтируйте CSV перед просмотром.")
             };
         };
@@ -36,8 +39,10 @@ function parseStrings(array){
         if(keys.length == Object.keys(array[i]).length){
             for(let i = 0; i < keys.length; i++)string += `<td>${array[l][keys[i]]}</td>`;
             parsed += `<tr>${string}</tr>`;
-        }else{
+        }else if(Object.keys(array[i]).length == (1 || 0)){
             logger(`Empty line ${i}`, 2);
+        }else if(keys.length != Object.keys(array[i]).length){
+            logger(`Broken line ${i}`, 2)
         };
     };
     return parsed;
@@ -59,10 +64,11 @@ function csvJSON(csv){
 };
 
 function logger(text, value = 0){
+    if(!debug)return;
     const sub = ["LOG", "ERROR", "WARNING"];
     if(value < 0 || value > sub.length || isNaN(value))return console.log(`[ LOGGER ERROR ] >> Value must be in range from 0 to ${sub.length - 1}!`);
     if(typeof text == "object")text = JSON.stringify(text);
-    console.log(`[ ${sub[value]} ] >> ${text}`);
+    return console.log(`[ ${sub[value]} ] >> ${text}`);
 };
 
 function hasUnicode(str) {
