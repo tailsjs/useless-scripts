@@ -1,4 +1,5 @@
 const debug = false;
+const unicodeError = true; // Will not skip some working CSVs that contain unicode characters. (Basically the � character)
 document.getElementById('csvfile').onchange = function(e) {
     if(this.files[0] == null)return;
     if(this.files[0].name.split(".")[this.files[0].name.split(".").length-1] != "csv")return alert("Это не CSV!");
@@ -16,7 +17,7 @@ document.getElementById('csvfile').onchange = function(e) {
             }catch(error){
                 logger(`${file.name} is broken.`, 1);
                 logger(error, 1);
-                return alert("Ваш CSV файл повреждён! Скорей всего, он был обфусцирован. Пожалуйста, отремонтируйте CSV перед просмотром.")
+                return alert("Ваш CSV файл повреждён! Скорей всего, он был обфусцирован. Пожалуйста, отремонтируйте CSV перед просмотром.");
             };
         };
     };
@@ -24,7 +25,7 @@ document.getElementById('csvfile').onchange = function(e) {
 
 function parseNames(array){
     const keys = Object.keys(array);
-    let parsed = "";
+    let parsed = "<th>LINE</th>";
     for(let i = 0; i < keys.length; i++){
         parsed += `<th>${keys[i]}</th>`;
     };
@@ -34,21 +35,26 @@ function parseStrings(array){
     const keys = Object.keys(array[0]);
     let parsed = "";
     for(let i = 0; i < array.length; i++){
-        let string = "";
+        let string = `<td>${i+1}</td>`;
         var l = i;
         if(keys.length == Object.keys(array[i]).length){
             for(let i = 0; i < keys.length; i++)string += `<td>${array[l][keys[i]]}</td>`;
             parsed += `<tr>${string}</tr>`;
         }else if(Object.keys(array[i]).length == (1 || 0)){
-            logger(`Empty line ${i}`, 2);
+            for(let i = 0; i < keys.length; i++)string += `<td> </td>`;
+            parsed += `<tr>${string}</tr>`;
+            logger(`Empty line ${i+1}`, 2);
         }else if(keys.length != Object.keys(array[i]).length){
-            logger(`Broken line ${i}`, 2)
+            for(let i = 0; i < keys.length; i++)string += `<td> </td>`;
+            parsed += `<tr>${string}</tr>`;
+            logger(`Broken line ${i+1}`, 2)
         };
     };
     return parsed;
 };
 function csvJSON(csv){
-    if(hasUnicode(csv))return {};
+    if(hasUnicode(csv) && !unicodeError)logger("Seems like CSV broken.", 2);
+    if(hasUnicode(csv) && unicodeError)return {};
     let lines = csv.split("\n");
     let result = [];
     let headers = lines[0].split(",");
@@ -70,7 +76,6 @@ function logger(text, value = 0){
     if(typeof text == "object")text = JSON.stringify(text);
     return console.log(`[ ${sub[value]} ] >> ${text}`);
 };
-
 function hasUnicode(str) {
     for (var i = 0; i < str.length; i++) {
         if (str.charCodeAt(i) > 127) return true;
