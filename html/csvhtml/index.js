@@ -1,5 +1,5 @@
 const debug = false;
-const unicodeError = true; // Will not skip some working CSVs that contain unicode characters. (Basically the � character)
+const unicodeError = false; // Will not skip some working CSVs that contain unicode characters. (Basically the � character)
 document.getElementById('csvfile').onchange = function(e) {
     if(this.files[0] == null)return;
     if(this.files[0].name.split(".")[this.files[0].name.split(".").length-1] != "csv")return alert("Это не CSV!");
