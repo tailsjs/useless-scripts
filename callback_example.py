@@ -13,8 +13,6 @@ def helloworld(name, callback): # Main function (imagine, module)
     return callback({ "ok": True, "response": hello }) # Here we execute code.
 
 def some_function(resp): #  The function that the callback will execute
-    if resp["ok"] == False:
-        return print(resp["response"])
     return print(resp["response"])
     # Here some code.
     
