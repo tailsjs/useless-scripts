@@ -6,8 +6,15 @@
 ** TRIANGULAR NUMBER
 */
 
-const number = 5;
+let number = 5;
 console.log((number*(number+1))/2);
+
+/*
+** IsODD?
+*/
+
+number = 5;
+console.log(number % 2 == 1)
 
 /*
 ** TO BE CONTINUED
