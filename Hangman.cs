@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            string word = "абубачир трахов";
+            string word = "привет мир";
             string usedLetters = "";
             string tempResult = "";
             int attempts = 6;
